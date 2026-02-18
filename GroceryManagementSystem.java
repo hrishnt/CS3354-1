@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * GroceryManagementSystem
  *
@@ -8,14 +10,50 @@
  * CS3354 - Assignment 1
  */
 public class GroceryManagementSystem {
+    
+public static void main(String[] args) {
 
-    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
 
-        String[] itemNames = new String[10];
-        double[] itemPrices = new double[10];
-        int[] itemStocks = new int[10];
+    String[] itemNames = new String[10];
+    double[] itemPrices = new double[10];
+    int[] itemStocks = new int[10];
+
+      while (true) {
+
+System.out.println("\n1.View Inventory ");
+System.out.println("2.Restock Item ");
+System.out.println("3.Exit ");
+System.out.print("Choose an option: ");
+
+ int choice = input.nextInt();
+    input.nextLine(); 
+
+    if (choice == 1) {
+     printInventory(itemNames, itemPrices, itemStocks);
     }
 
+    else if (choice == 2) {
+     System.out.print("Enter item name: ");
+     String target = input.nextLine();
+
+     System.out.print("Enter amount: ");
+     int amount = input.nextInt();
+
+     restockItem(itemNames, itemStocks, target, amount);
+    }
+
+  else if (choice == 3) {
+  break;
+     }
+
+ else {
+     System.out.println("Invalid option.");
+     }
+}
+
+input.close();
+}
     /**
      * Prints all items currently in the inventory.
      * Only prints items whose name is not null.
